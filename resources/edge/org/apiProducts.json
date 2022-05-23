@@ -1,0 +1,128 @@
+[
+    {
+        "name": "demo-pingstatus-mint-v1-product-basic-APIGEE_ENVIRONMENT",
+        "displayName": "demo-pingstatus-mint-v1-product-basic-APIGEE_ENVIRONMENT",
+        "description": "Demo product to test demo-pingstatus-mint-v1 with basic rate plan in APIGEE_ENVIRONMENT.",
+        "approvalType": "auto",
+        "attributes": [{
+            "name": "access",
+            "value": "public"
+        }],
+        "environments": [
+            "APIGEE_ENVIRONMENT"
+        ],
+        "quota": "100",
+        "quotaInterval": "1",
+        "quotaTimeUnit": "day",
+        "createdAt": "1619468481472",
+        "lastModifiedAt": "1619468941426",
+        "operationGroup": {
+            "operationConfigs": [{
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/free",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "1000",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                },
+                {
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/ping",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "500",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                },
+                {
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/status",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "100",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                }
+            ],
+            "operationConfigType": "proxy"
+        }
+    },
+    {
+        "name": "demo-pingstatus-mint-v1-product-revshare-APIGEE_ENVIRONMENT",
+        "displayName": "demo-pingstatus-mint-v1-product-revshare-APIGEE_ENVIRONMENT",
+        "description": "Demo product to test demo-pingstatus-mint-v1 with revenue sharing rate plan in APIGEE_ENVIRONMENT.",
+        "approvalType": "auto",
+        "attributes": [{
+            "name": "access",
+            "value": "public"
+        }],
+        "environments": [
+            "APIGEE_ENVIRONMENT"
+        ],
+        "quota": "100",
+        "quotaInterval": "1",
+        "quotaTimeUnit": "day",
+        "operationGroup": {
+            "operationConfigs": [{
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/free",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "1000",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                },
+                {
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/ping",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "500",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                },
+                {
+                    "apiSource": "demo-pingstatus-mint-v1",
+                    "operations": [{
+                        "resource": "/status",
+                        "methods": [
+                            "GET"
+                        ]
+                    }],
+                    "quota": {
+                        "limit": "100",
+                        "interval": "1",
+                        "timeUnit": "day"
+                    }
+                }
+            ],
+            "operationConfigType": "proxy"
+        }
+    }
+]

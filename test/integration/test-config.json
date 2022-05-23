@@ -1,0 +1,9 @@
+{
+    "apiconfig": {
+        "domain": "API_NORTHBOUND_DOMAIN",
+        "basepath": "/demo-pingstatus-mint/v1",
+        "apiproxy": "demo-pingstatus-mint-v1",
+		"product":"demo-pingstatus-mint-v1-product-basic-APIGEE_ENVIRONMENT",
+        "app":"demo-pingstatus-mint-v1-app-prepaid-basic-APIGEE_ENVIRONMENT"
+    }
+}

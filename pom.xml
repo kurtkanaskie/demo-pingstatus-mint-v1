@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>exco</groupId>
+	<artifactId>demo-pingstatus-mint-v1</artifactId>
+	<version>1.0</version>
+	<name>demo-pingstatus-mint-v1</name>
+	<packaging>pom</packaging>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>https://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+		<project.root.dir>${basedir}</project.root.dir>
+		<target.root.dir>${basedir}/target</target.root.dir>
+		<commit>none</commit>
+		<branch>local</branch>
+	</properties>
+
+	<!-- This is where you add environment specific properties under various profile names 
+		 For apigee.options, refer to "Advanced Configuration Options" under https://github.com/apigee/apigee-deploy-maven-plugin#pom-xml-sample 
+	-->
+	<profiles>
+		<profile>
+			<id>test</id>
+			<properties>
+				<apigee.profile>test</apigee.profile>
+				<!-- Replace with your values -->
+				<apigee.org>apigeex-mint-kurt</apigee.org>
+				<apigee.env>test</apigee.env>
+				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
+				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
+				<!-- End replace with your values -->
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.authtype>oauth</apigee.authtype>
+				<apigee.bearer>${bearer}</apigee.bearer>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				
+                <portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
+				<portal.username>${pusername}</portal.username><!-- Username for the developer portal. -->
+				<portal.password>${ppassword}</portal.password><!-- Password for the developer portal. -->
+				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
+				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.directory>./resources/specs</portal.directory><!-- Directory where OpenAPI specs are accessible. -->
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
+				<apigee.smartdocs.config.file>./apicatalog-config.json</apigee.smartdocs.config.file>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<apigee.profile>prod</apigee.profile>
+				<!-- Replace with your values -->
+				<apigee.org>apigeex-mint-kurt</apigee.org>
+				<apigee.env>prod</apigee.env>
+				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
+				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
+				<!-- End replace with your values -->
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.authtype>oauth</apigee.authtype>
+				<apigee.bearer>${bearer}</apigee.bearer>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				
+                <portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
+				<portal.username>${pusername}</portal.username><!-- Username for the developer portal. -->
+				<portal.password>${ppassword}</portal.password><!-- Password for the developer portal. -->
+				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
+				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.directory>./resources/specs</portal.directory><!-- Directory where OpenAPI specs are accessible. -->
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
+				<apigee.smartdocs.config.file>./apicatalog-config.json</apigee.smartdocs.config.file>
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
+			</properties>
+		</profile>		
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- jslint -->
+			<plugin>
+				<groupId>com.cj.jshintmojo</groupId>
+				<artifactId>jshint-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>jslint</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>lint</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<options>curly,eqeqeq,forin,latedef,undef,noempty,nonew,unused</options>
+					<directories>
+						<directory>apiproxy/resources/jsc</directory>
+					</directories>
+					<reporter>jslint</reporter>
+				</configuration>
+			</plugin>
+
+			<!-- prefix: resources - copy the full apiproxy folder to target folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<!--source -->
+									<directory>${project.root.dir}</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>resources/**</include>
+										<include>apiproxy/**</include>
+										<include>test/integration/**</include>
+										<include>test/performance/**</include>
+									</includes>
+								</resource>
+							</resources>
+							<!--target -->
+							<outputDirectory>${target.root.dir}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- prefix: replacer - Do replacements -->
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<id>replace</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<basedir>${target.root.dir}</basedir>
+					<includes>
+						<include>apiproxy/pingstatus-mint-v1.xml</include>
+						<include>apiproxy/proxies/default.xml</include>
+						<include>test/integration/test-config.json</include>
+						<include>resources/edge/env/*/targetServers.json</include>
+						<include>resources/edge/env/*/resourcefiles.json</include>
+						<include>resources/edge/env/*/resourceFiles/properties/pingstatus-mint-v1.properties</include>
+						<include>resources/edge/org/apiProducts.json</include>
+						<include>resources/edge/org/developerApps.json</include>
+						<include>resources/edge/org/developers.json</include>
+					</includes>
+					<replacements>
+						<replacement>
+							<token>API_NORTHBOUND_DOMAIN</token>
+							<value>${api.northbound.domain}</value>
+						</replacement>
+						<replacement>
+							<token>REPLACE_DESCRIPTION</token>
+							<value>commit ${commit} from branch ${branch} by ${user.name}</value>
+						</replacement>
+						<replacement>
+							<token>APIGEE_ENVIRONMENT</token>
+							<value>${apigee.env}</value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
+
+			<!-- apigee Deploy prefix: apigee-enterprise -->
+			<plugin>
+				<groupId>io.apigee.build-tools.enterprise4g</groupId>
+				<artifactId>apigee-edge-maven-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>configure-bundle-step</id>
+						<phase>package</phase>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+					<!--deploy bundle -->
+					<execution>
+						<id>deploy-bundle-step</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- apigee Configuration prefix: apigee-config then goal (e.g. apigee-config:apiproducts) -->
+			<plugin>
+				<groupId>com.apigee.edge.config</groupId>
+				<artifactId>apigee-config-maven-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>create-config-targetservers</id>
+						<phase>package</phase>
+						<goals>
+							<goal>targetservers</goal>
+						</goals>
+					</execution>
+					<execution>
+					    <id>create-config-resourcefiles</id>
+					    <phase>package</phase>                        
+					    <goals>
+					        <goal>resourcefiles</goal>
+					    </goals>
+					</execution>
+                    <execution>
+						<id>create-config-apiproduct</id>
+						<phase>install</phase>
+						<goals>
+							<goal>apiproducts</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>create-config-developer</id>
+						<phase>install</phase>
+						<goals>
+							<goal>developers</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>create-config-app</id>
+						<phase>install</phase>
+						<configuration>
+							<skip>${skip.apps}</skip>
+						</configuration>
+						<goals>
+							<goal>apps</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>export-config-app</id>
+						<phase>install</phase>
+						<configuration>
+							<skip>${skip.export}</skip>
+						</configuration>
+						<goals>
+							<goal>exportAppKeys</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- install node, npm install, run apigeelint, run unit, run integration -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.8.0</version>
+				<!-- NOTE: put executable in targetnode, otherwise uses node and deploy plugin thinks its a node.js proxy -->
+				<configuration>
+					<installDirectory>targetnode</installDirectory>
+					<nodeVersion>v12.22.0</nodeVersion>
+					<npmVersion>8.3.0</npmVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-node-and-npm</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>npm-install</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>apigeelint</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run apigeelint</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unit</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run unit</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integration</id>
+						<phase>install</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<skip>${skip.integration}</skip>
+							<arguments>run integration -- --tags ${api.testtag}</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- apigee Smartdocs API Specs for Drupal prefix: apigee-smartdocs:apidoc -->
+			<plugin>
+				<groupId>com.apigee.smartdocs.config</groupId>
+				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
+				<version>2.1.2</version>
+				<configuration>
+					<skip>${skip.smartdocs}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>smartdocs-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>apidoc</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- run performance tests -->
+			<!--
+			<plugin>
+				<groupId>com.lazerycode.jmeter</groupId>
+				<artifactId>jmeter-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<executions>
+					<execution>
+					<id>jmeter-tests</id>
+					<phase>install</phase>
+					<goals>
+						<goal>jmeter</goal>
+					</goals>
+					<configuration>
+						<skipTests>${skipPerformanceTests}</skipTests>
+						<ignoreResultFailures>true</ignoreResultFailures>
+						<suppressJMeterOutput>false</suppressJMeterOutput>
+						<propertiesUser>
+						<testData>testdata.csv</testData>
+						<threadNum>10</threadNum>
+						<rampUpPeriodSecs>2</rampUpPeriodSecs>
+						<loopCount>10</loopCount>
+						</propertiesUser>
+					</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<testFilesDirectory>target/test/performance</testFilesDirectory>
+					<testResultsTimestamp>false</testResultsTimestamp>
+					<resultsDirectory>${project.root.dir}/results/performance</resultsDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.lazerycode.jmeter</groupId>
+				<artifactId>jmeter-analysis-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<executions>
+					<execution>
+					<id>jmeter-analysis</id>
+								<phase>install</phase>
+					<goals>
+						<goal>analyze</goal>
+					</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceDirFailed>false</sourceDirFailed>
+					<source>${project.root.dir}/results/performance/*</source>
+							<targetDirectory>${project.root.dir}/results/performance/reports</targetDirectory>
+				</configuration>
+			</plugin>
+			-->
+
+			<!-- cleaning dirs -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<skip>${skip.clean}</skip>
+				</configuration>
+				<executions>
+					<!-- Don't clean on init for iteration on tests -->
+					<execution>
+						<id>auto-clean-init</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+					<!-- Don't clean target dir for debugging, post mortem -->
+					<execution>
+						<id>auto-clean-install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

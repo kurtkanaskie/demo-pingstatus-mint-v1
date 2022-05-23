@@ -1,0 +1,34 @@
+{
+    "demo-developer-prepaid-APIGEE_ENVIRONMENT@google.com": [
+        {
+            "name": "demo-pingstatus-mint-v1-app-prepaid-basic-APIGEE_ENVIRONMENT",
+            "apiProducts": [ "demo-pingstatus-mint-v1-product-basic-APIGEE_ENVIRONMENT" ],
+            "keyExpiresIn": -1,
+            "callbackUrl": "NA",
+            "scopes": []
+        },
+        {
+            "name": "demo-pingstatus-mint-v1-app-prepaid-revshare-APIGEE_ENVIRONMENT",
+            "apiProducts": [ "demo-pingstatus-mint-v1-product-revshare-APIGEE_ENVIRONMENT" ],
+            "keyExpiresIn": -1,
+            "callbackUrl": "NA",
+            "scopes": []
+        }
+    ],
+    "demo-developer-postpaid-APIGEE_ENVIRONMENT@google.com": [
+        {
+            "name": "demo-pingstatus-mint-v1-app-postpaid-basic-APIGEE_ENVIRONMENT",
+            "apiProducts": [ "demo-pingstatus-mint-v1-product-basic-APIGEE_ENVIRONMENT" ],
+            "keyExpiresIn": -1,
+            "callbackUrl": "NA",
+            "scopes": []
+        },
+        {
+            "name": "demo-pingstatus-mint-v1-app-postpaid-revshare-APIGEE_ENVIRONMENT",
+            "apiProducts": [ "demo-pingstatus-mint-v1-product-revshare-APIGEE_ENVIRONMENT" ],
+            "keyExpiresIn": -1,
+            "callbackUrl": "NA",
+            "scopes": []
+        }
+    ]
+}

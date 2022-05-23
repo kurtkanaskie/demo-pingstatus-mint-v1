@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota name="QU-monetization-enforce" type="flexi">
+    <SharedName>monetization</SharedName>
+    <EnforceOnly>true</EnforceOnly>
+    <UseQuotaConfigInAPIProduct stepName="VA-Header">
+        <DefaultConfig>
+            <Allow>42</Allow>
+            <Interval>1</Interval>
+            <TimeUnit>minute</TimeUnit>
+        </DefaultConfig>
+    </UseQuotaConfigInAPIProduct>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
