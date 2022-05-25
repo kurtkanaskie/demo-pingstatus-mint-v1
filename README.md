@@ -76,6 +76,11 @@ mvn -P test apigee-config:exportAppKeys
 mvn -P test frontend:npm@integration
 ```
 
+## Update the proxy
+```
+mvn -P test install
+```
+
 ### Re-run integration tests
 ```
 mvn -P test resources:copy-resources@copy-resources replacer:replace@replace apigee-config:resourcefiles apigee-config:exportAppKeys frontend:npm@integration
